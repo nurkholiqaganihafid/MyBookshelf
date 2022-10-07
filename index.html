@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MyBookshelf</title>
+    <link rel="stylesheet" href="assets/css/styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  </head>
+  <body>
+    <header class="head-bar">
+      <h1>My Bookshelf</h1>
+    </header>
+    <main>
+      <div class="container-1">
+        <section class="input-section">
+          <h2>Masukkan Buku Baru</h2>
+          <form id="inputBook">
+            <div class="input">
+              <label for="inputBookTitle">Judul</label>
+              <input
+                id="inputBookTitle"
+                type="text"
+                placeholder="The Road Ahead"
+                required
+              />
+            </div>
+            <div class="input">
+              <label for="inputBookAuthor">Penulis</label>
+              <input
+                id="inputBookAuthor"
+                type="text"
+                placeholder="Bill Gates"
+                required
+              />
+            </div>
+            <div class="input">
+              <label for="inputBookYear">Tahun</label>
+              <input
+                id="inputBookYear"
+                type="number"
+                placeholder="1995"
+                required
+              />
+            </div>
+            <div class="input">
+              <label for="inputBookPage">Jumlah halaman</label>
+              <input
+                id="inputBookPage"
+                type="number"
+                placeholder="286"
+                required
+              />
+            </div>
+            <div class="input">
+              <label for="inputBookLanguage">Bahasa</label>
+              <input
+                id="inputBookLanguage"
+                type="text"
+                placeholder="Inggris"
+                required
+              />
+            </div>
+            <div class="input">
+              <label for="inputBookGenre">Genre</label>
+              <select
+                class="book-genre"
+                name="bookGenre"
+                id="inputBookGenre"
+                required
+              >
+                <option value="" selected>Pilih jenis buku</option>
+                <option value="Pendidikan">Pendidikan</option>
+                <option value="Sejarah">Sejarah</option>
+                <option value="Komedi">Komedi</option>
+                <option value="Romantis">Romantis</option>
+                <option value="Komik">Komik</option>
+                <option value="Horor">Horor</option>
+                <option value="Anak-anak">Anak-anak</option>
+                <option value="Dewasa">Dewasa</option>
+                <option value="Nonfiksi">Nonfiksi</option>
+                <option value="etc.">etc.</option>
+              </select>
+            </div>
+            <div class="input">
+              <label for="inputBookCover">Link Cover Buku (Opsional)</label>
+              <input
+                id="inputBookCover"
+                type="text"
+                placeholder="ex: https://bit.ly/3V4zEOa"
+              />
+            </div>
+            <div class="input-inline">
+              <label for="inputBookIsComplete">Selesai dibaca</label>
+              <input id="inputBookIsComplete" type="checkbox" />
+            </div>
+            <button id="bookSubmit" type="submit">
+              Masukkan Buku ke rak <span>Belum selesai dibaca</span>
+            </button>
+          </form>
+        </section>
+      </div>
+
+      <div class="container-2">
+        <section class="search-section box" hidden>
+          <div class="search">
+            <input
+              type="text"
+              class="searchBook"
+              id="searchBook"
+              name=""
+              placeholder="Telusuri Judul Buku"
+            />
+            <button id="searchSubmit" type="submit">
+              <i class="fa fa-search"></i>
+            </button>
+          </div>
+        </section>
+
+        <section class="dropdown box" hidden>
+          <label for="inputChooseBook">Tipe Buku</label>
+          <select class="choose-book" name="chooseBook" id="inputChooseBook">
+            <option value="Semua Buku" selected>Semua Buku</option>
+            <option value="Selesai">Selesai</option>
+            <option value="Belum Selesai">Belum Selesai</option>
+          </select>
+        </section>
+      </div>
+
+      <div class="container-3">
+        <section class="book-shelf box" hidden>
+          <h2>Belum selesai dibaca</h2>
+          <div id="incompleteBookshelfList" class="book-list">
+            <!-- <article class="book-item">
+              <div class="book-cover">
+                <img src="assets/image/dummy-cover.jpg" alt="Cover" />
+              </div>
+              <div class="book-detail">
+                <h3>The Road Ahead</h3>
+                <p>Bill Gates</p>
+                <p>Tahun 1995</p>
+                <p>286 Halaman</p>
+                <p>Bahasa Inggris</p>
+                <p>Nonfiksi</p>
+              </div>
+
+              <div class="action">
+                <button id="check"><i class="fa fa-check-circle"></i></button>
+                <button id="delete"><i class="fa fa-trash"></i></button>
+                <button id="edit"><i class="fa fa-pencil"></i></button>
+              </div>
+            </article> -->
+          </div>
+        </section>
+
+        <section class="book-shelf box" hidden>
+          <h2>Selesai dibaca</h2>
+          <div id="completeBookshelfList" class="book-list">
+            <!-- <article class="book-item">
+              <div class="book-cover">
+                <img src="assets/image/dummy-cover.jpg" alt="Cover" />
+              </div>
+              <div class="book-detail">
+                <h3>The Road Ahead</h3>
+                <p>Bill Gates</p>
+                <p>Tahun 1995</p>
+                <p>286 Halaman</p>
+                <p>Bahasa Inggris</p>
+                <p>Nonfiksi</p>
+              </div>
+
+              <div class="action">
+                <button id="undo"><i class="fa fa-undo"></i></button>
+                <button id="delete"><i class="fa fa-trash"></i></button>
+              </div>
+            </article> -->
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer>
+      <div>Copyright &#169; 2022 | My Bookshelf</div>
+      <p>Nurkholiq Agani Hafid</p>
+      <div>
+        <a href="https://www.instagram.com/nurkholiq.agani_hafid/">
+          <ion-icon name="logo-instagram" class="coba"></ion-icon
+        ></a>
+        <a href="https://github.com/nurkholiqaganihafid">
+          <ion-icon name="logo-github"></ion-icon
+        ></a>
+      </div>
+    </footer>
+
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+    ></script>
+  </body>
+</html>
