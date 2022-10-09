@@ -26,6 +26,7 @@
                 id="inputBookTitle"
                 type="text"
                 placeholder="The Road Ahead"
+                maxlength="30"
                 required
               />
             </div>
@@ -35,6 +36,7 @@
                 id="inputBookAuthor"
                 type="text"
                 placeholder="Bill Gates"
+                maxlength="30"
                 required
               />
             </div>
@@ -44,6 +46,7 @@
                 id="inputBookYear"
                 type="number"
                 placeholder="1995"
+                onKeyPress="if(this.value.length==4) return false;"
                 required
               />
             </div>
@@ -53,6 +56,7 @@
                 id="inputBookPage"
                 type="number"
                 placeholder="286"
+                onKeyPress="if(this.value.length==5) return false;"
                 required
               />
             </div>
@@ -62,6 +66,7 @@
                 id="inputBookLanguage"
                 type="text"
                 placeholder="Inggris"
+                maxlength="30"
                 required
               />
             </div>
@@ -108,16 +113,18 @@
       <div class="container-2">
         <section class="search-section box" hidden>
           <div class="search">
-            <input
-              type="text"
-              class="searchBook"
-              id="searchBook"
-              name=""
-              placeholder="Telusuri Judul Buku"
-            />
-            <button id="searchSubmit" type="submit">
-              <i class="fa fa-search"></i>
-            </button>
+            <form id="searchMyBookshelf">
+              <input
+                type="text"
+                class="searchBook"
+                id="searchBook"
+                name=""
+                placeholder="Telusuri Judul Buku"
+              />
+              <button id="searchSubmit" type="submit">
+                <i class="fa fa-search"></i>
+              </button>
+            </form>
           </div>
         </section>
 

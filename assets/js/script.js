@@ -37,19 +37,19 @@ function makeBook(bookObject) {
     bookTitle.innerText = title
 
     const bookAuthor = document.createElement('p')
-    bookAuthor.innerText = author
+    bookAuthor.innerText = `Penulis: ${author}`
 
     const bookYear = document.createElement('p')
-    bookYear.innerText = year
+    bookYear.innerText = `Tahun: ${year}`
 
     const bookPage = document.createElement('p')
-    bookPage.innerText = page
+    bookPage.innerText = `Halaman: ${page}`
 
     const bookLanguage = document.createElement('p')
-    bookLanguage.innerText = language
+    bookLanguage.innerText = `Bahasa: ${language}`
 
     const bookGenre = document.createElement('p')
-    bookGenre.innerText = genre
+    bookGenre.innerText = `Genre: ${genre}`
 
     const bookDetail = document.createElement('div')
     bookDetail.classList.add('book-detail')
@@ -193,6 +193,30 @@ function undoBookFromComplete(bookId) {
     saveData()
 }
 
+function searchBooks() {
+    const inputSearchTitle = document.getElementById('searchBook').value.toLowerCase()
+    const unfinishedBookList = document.getElementById('unfinishedBook')
+    const bookFinishedList = document.getElementById('bookFinishedReading')
+    unfinishedBookList.innerHTML = ''
+    bookFinishedList.innerHTML = ''
+
+    if (inputSearchTitle == '') {
+        document.dispatchEvent(new Event(RENDER_EVENT))
+        return
+    }
+
+    for (const book of books) {
+        if (book.title.toLowerCase().includes(inputSearchTitle)) {
+            const bookElement = makeBook(book)
+            if (book.isComplete == false) {
+                unfinishedBookList.append(bookElement)
+            } else {
+                bookFinishedList.append(bookElement)
+            }
+        }
+    }
+}
+
 function saveData() {
     if (isStorageExist()) {
         const parsed = JSON.stringify(books)
@@ -281,6 +305,30 @@ function addBook() {
     saveData()
 }
 
+document.getElementById('searchBook').addEventListener('keyup', function (e) {
+    e.preventDefault()
+    searchBooks()
+})
+
+document.getElementById('searchMyBookshelf').addEventListener('submit', function (e) {
+    e.preventDefault()
+    searchBooks()
+})
+
+document.querySelector('#inputChooseBook').addEventListener('change', function (e) {
+    if (e.target.options[e.target.selectedIndex].value === 'Semua Buku') {
+        hiddenFinished.removeAttribute('hidden')
+        hiddenNotFinished.removeAttribute('hidden')
+    } else if (e.target.options[e.target.selectedIndex].value === 'Selesai') {
+        hiddenNotFinished.setAttribute('hidden', true)
+        hiddenFinished.removeAttribute('hidden')
+
+    } else if (e.target.options[e.target.selectedIndex].value === 'Belum Selesai') {
+        hiddenFinished.setAttribute('hidden', true)
+        hiddenNotFinished.removeAttribute('hidden')
+    }
+})
+
 document.addEventListener(SAVED_EVENT, function () {
     console.log('Data berhasil disimpan');
 })
@@ -314,6 +362,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         event.preventDefault()
         addBook()
+        submitForm.reset()
     })
 
     if (isStorageExist()) {

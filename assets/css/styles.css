@@ -135,6 +135,7 @@ select {
 
 .container-3 > .box {
   flex-grow: 1;
+  width: 50%;
   margin: 25px;
   padding: 5px;
   border: 1px solid black;
@@ -155,20 +156,30 @@ select {
   align-items: center;
 }
 
-.searchBook {
+#searchMyBookshelf {
   width: 100%;
   padding-left: 12px;
   margin-right: -20px;
+  transition: 0.4s;
+}
+
+.searchBook {
+  float: left;
+  margin-top: 1px;
+  max-width: 100%;
+  width: 90%;
+  padding: 7px;
   border: none;
   background: none;
   outline: none;
   font-size: 14px;
-  float: left;
-  transition: 0.4s;
 }
 
 #searchSubmit {
   float: right;
+  position: absolute;
+  right: 8px;
+  bottom: 2px;
   padding: 4px;
   margin: 5px;
   border-radius: 50%;
