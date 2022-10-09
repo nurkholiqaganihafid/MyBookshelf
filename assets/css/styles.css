@@ -205,7 +205,8 @@ button {
 }
 
 .book-item .book-cover img {
-  width: 85px;
+  width: 95px;
+  height: 145px;
   border-radius: 10px;
 }
 
