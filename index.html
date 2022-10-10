@@ -103,7 +103,7 @@
               <label for="inputBookIsComplete">Selesai dibaca</label>
               <input id="inputBookIsComplete" type="checkbox" />
             </div>
-            <button id="bookSubmit" type="submit">
+            <button id="bookSubmit" type="submit" class="button-color-submit">
               Masukkan Buku ke rak <span>Belum selesai dibaca</span>
             </button>
           </form>
@@ -186,6 +186,87 @@
               </div>
             </article> -->
           </div>
+        </section>
+      </div>
+
+      <div class="container-4 input-edit">
+        <section class="input-section edit-section">
+          <h2>Edit Buku</h2>
+          <form id="editBook">
+            <div class="input">
+              <label for="inputEditTitle">Judul</label>
+              <input
+                id="inputEditTitle"
+                type="text"
+                placeholder="The Road Ahead"
+                maxlength="30"
+              />
+            </div>
+            <div class="input">
+              <label for="inputEditAuthor">Penulis</label>
+              <input
+                id="inputEditAuthor"
+                type="text"
+                placeholder="Bill Gates"
+                maxlength="30"
+              />
+            </div>
+            <div class="input">
+              <label for="inputEditYear">Tahun</label>
+              <input
+                id="inputEditYear"
+                type="number"
+                placeholder="1995"
+                onKeyPress="if(this.value.length==4) return false;"
+              />
+            </div>
+            <div class="input">
+              <label for="inputEditPage">Jumlah halaman</label>
+              <input
+                id="inputEditPage"
+                type="number"
+                placeholder="286"
+                onKeyPress="if(this.value.length==5) return false;"
+              />
+            </div>
+            <div class="input">
+              <label for="inputEditLanguage">Bahasa</label>
+              <input
+                id="inputEditLanguage"
+                type="text"
+                placeholder="Inggris"
+                maxlength="30"
+              />
+            </div>
+            <div class="input">
+              <label for="inputEditGenre">Genre</label>
+              <select class="book-genre" name="bookGenre" id="inputEditGenre">
+                <option value="" selected>Pilih jenis buku</option>
+                <option value="Pendidikan">Pendidikan</option>
+                <option value="Sejarah">Sejarah</option>
+                <option value="Komedi">Komedi</option>
+                <option value="Romantis">Romantis</option>
+                <option value="Komik">Komik</option>
+                <option value="Horor">Horor</option>
+                <option value="Anak-anak">Anak-anak</option>
+                <option value="Dewasa">Dewasa</option>
+                <option value="Nonfiksi">Nonfiksi</option>
+                <option value="etc.">etc.</option>
+              </select>
+            </div>
+            <div class="input">
+              <label for="inputEditCover">Link Cover Buku (Opsional)</label>
+              <input
+                id="inputEditCover"
+                placeholder="ex: https://bit.ly/3V4zEOa"
+                type="text"
+              />
+            </div>
+            <button class="btn-red" id="editCancel">Batal</button>
+            <button class="btn-green" type="submit" id="editSubmmit">
+              Simpan
+            </button>
+          </form>
         </section>
       </div>
     </main>

@@ -94,9 +94,16 @@ function makeBook(bookObject) {
             removeBookFromBookshelf(id)
         })
 
+        const editButton = document.createElement('button')
+        editButton.setAttribute('id', 'edit')
+        editButton.append(iconEdit)
+        editButton.addEventListener('click', function () {
+            editBookFromBookshelf(id)
+        })
+
         const actionButtonParent = document.createElement('div')
         actionButtonParent.classList.add('action')
-        actionButtonParent.append(undoButton, deleteButton)
+        actionButtonParent.append(undoButton, deleteButton, editButton)
 
         container.append(actionButtonParent)
     } else {
@@ -118,7 +125,7 @@ function makeBook(bookObject) {
         editButton.setAttribute('id', 'edit')
         editButton.append(iconEdit)
         editButton.addEventListener('click', function () {
-            // TODO: Mengedit Buku
+            editBookFromBookshelf(id)
         })
 
         const actionButtonParent = document.createElement('div')
@@ -191,6 +198,62 @@ function undoBookFromComplete(bookId) {
 
     document.dispatchEvent(new Event(RENDER_EVENT))
     saveData()
+}
+
+function editBookFromBookshelf(bookId) {
+    const displayInputEdit = document.querySelector('.input-edit')
+    displayInputEdit.style.display = 'flex'
+    const formEditBooks = document.getElementById('editBook')
+    const editTitle = document.getElementById('inputEditTitle')
+    const editAuthor = document.getElementById('inputEditAuthor')
+    const editYear = document.getElementById('inputEditYear')
+    const editPage = document.getElementById('inputEditPage')
+    const editLanguage = document.getElementById('inputEditLanguage')
+    const editGenre = document.getElementById('inputEditGenre')
+    const editCover = document.getElementById('inputEditCover')
+    const btnCancelEdit = document.getElementById('editCancel')
+    const btnSubmitEdit = document.getElementById('editSubmmit')
+    const bookTarget = findBookIndex(bookId)
+
+    editTitle.setAttribute('value', books[bookTarget].title)
+    editAuthor.setAttribute('value', books[bookTarget].author)
+    editYear.setAttribute('value', books[bookTarget].year)
+    editPage.setAttribute('value', books[bookTarget].page)
+    editLanguage.setAttribute('value', books[bookTarget].language)
+    editGenre.setAttribute('value', books[bookTarget].genre)
+    editCover.setAttribute('value', books[bookTarget].cover)
+
+    btnSubmitEdit.addEventListener('click', function () {
+        const titleValidation = books[bookTarget].title = editTitle.value
+        const authorValidation = books[bookTarget].author = editAuthor.value
+        const yearValidation = books[bookTarget].year = editYear.value
+        const pageValidation = books[bookTarget].page = editPage.value
+        const languageValidation = books[bookTarget].language = editLanguage.value
+        const genreValidation = books[bookTarget].genre = editGenre.value
+        // const coverValidation = books[bookTarget].cover = editCover.value
+
+        if (books[bookTarget].cover = editCover.value.length <= 15) {
+            books[bookTarget].cover = editCover.value.innerText = 'assets/image/dummy-cover.jpg'
+        } else {
+            books[bookTarget].cover = editCover.value
+        }
+
+        if (titleValidation == '' || authorValidation == '' || yearValidation == '' || pageValidation == '' || languageValidation == '' || genreValidation == '') {
+            alert('Salah satu input yang anda masukkan tidak boleh kosong')
+        } else {
+            document.dispatchEvent(new Event(RENDER_EVENT))
+            saveData()
+            formEditBooks.reset()
+            displayInputEdit.style.display = 'none'
+        }
+    })
+
+    btnCancelEdit.addEventListener('click', function (e) {
+        e.preventDefault()
+        displayInputEdit.style.display = 'none'
+        formEditBooks.reset()
+
+    })
 }
 
 function searchBooks() {
