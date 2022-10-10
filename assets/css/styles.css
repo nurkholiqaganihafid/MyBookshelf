@@ -297,6 +297,96 @@ button {
   margin-top: 20px;
 }
 
+.alertInfo {
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  padding: 5px;
+  padding-left: 10px;
+  text-align: center;
+  border: 1px solid #aaaaaa;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.9s ease-in-out;
+}
+
+.popup-delete {
+  position: fixed;
+  justify-content: center;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  border: none;
+  border-radius: 0;
+  /* display: flex; */
+  display: none;
+  background-color: rgba(168, 168, 168, 0.5);
+}
+
+.view-delete {
+  margin-top: 200px;
+  height: 50%;
+  background: white;
+  padding: 60px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.view-delete i {
+  font-size: 60px;
+  color: #f23b26;
+  border: 5px solid #f23b26;
+  padding: 20px 40px;
+  border-radius: 50%;
+  margin: -10px 0 20px 0;
+}
+
+.view-delete h1 {
+  font-size: 20px;
+  color: #1b2631;
+  margin-bottom: 5px;
+}
+
+.btn-delete,
+.btn-cancel {
+  background: #999999;
+  border-color: #999999;
+  color: white;
+  font-size: 18px;
+  margin-top: 20px;
+  border-radius: 5px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.btn-cancel {
+  margin-left: 20px;
+}
+
+.btn-delete {
+  background: rgb(243, 35, 35);
+  width: 65px;
+}
+
+.btn-cancel:hover {
+  transition: 0.5s;
+  background: #696969;
+  border-color: #696969;
+}
+
+.btn-delete:hover {
+  transition: 0.5s;
+  background: #ca0101;
+  border-color: #ca0101;
+}
+
 footer {
   padding: 20px;
   justify-content: center;
@@ -311,4 +401,121 @@ footer ion-icon {
   font-size: 1.5em;
   width: 30px;
   color: black;
+}
+
+@media screen and (max-width: 1127px) {
+  .container-3 {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .container-3 > .box {
+    width: 80%;
+  }
+
+  .container-2 {
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .container-2 > .box {
+    flex-grow: 0;
+    width: 300px;
+  }
+
+  .container-1 {
+    margin-right: 0%;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+@media screen and (max-width: 827px) {
+  .container-2 {
+    margin-left: -50px;
+  }
+
+  .container-2 > .box {
+    width: 250px;
+  }
+}
+
+@media screen and (max-width: 769px) {
+  .container-2 {
+    flex-direction: row;
+    justify-content: left;
+  }
+
+  .search-section {
+    margin-left: 100px;
+  }
+
+  .container-2 {
+    margin-left: -10px;
+  }
+}
+
+@media screen and (max-width: 663px) {
+  .book-item .book-detail h3,
+  .book-item .book-detail > p {
+    overflow-wrap: break-word;
+    width: 150px;
+  }
+
+  .container-2 {
+    flex-direction: column;
+    justify-content: left;
+  }
+}
+
+@media screen and (max-width: 433px) {
+  .book-item .book-detail h3,
+  .book-item .book-detail > p {
+    width: 100px;
+  }
+
+  .input-section {
+    width: 300px;
+    padding: 16px;
+  }
+
+  .view-delete {
+    padding: 40px;
+  }
+}
+
+@media screen and (max-width: 372px) {
+  .book-item .book-detail h3,
+  .book-item .book-detail > p {
+    width: 80px;
+    font-size: 12px;
+  }
+
+  .book-item .book-cover img {
+    width: 75px;
+    height: 105px;
+    border-radius: 10px;
+  }
+
+  .book-item .action > button {
+    margin: 6px;
+    padding: 5px;
+    border-radius: 50%;
+    font-size: 10px;
+    background: #e8ffff;
+    border-color: transparent;
+  }
+
+  .view-delete {
+    padding: 40px;
+    width: 270px;
+  }
+}
+
+@media screen and (max-width: 318px) {
+  .input-section {
+    width: 250px;
+  }
 }

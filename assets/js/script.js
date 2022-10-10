@@ -161,20 +161,56 @@ function findBook(bookId) {
 }
 
 function removeBookFromBookshelf(bookId) {
-    const bookTarget = findBookIndex(bookId)
+    const displayPopDelete = document.querySelector('.popup-delete')
+    displayPopDelete.style.display = 'flex'
+    const btnDelete = document.getElementById('btnDelete')
+    const btnCancel = document.getElementById('btnCancel')
 
-    if (bookTarget === -1) return
-    books.splice(bookTarget, 1)
 
-    if (books.length == 0) {
-        hiddenSearch.setAttribute('hidden', true)
-        hiddenDropdown.setAttribute('hidden', true)
-        hiddenFinished.setAttribute('hidden', true)
-        hiddenNotFinished.setAttribute('hidden', true)
-    }
+    btnDelete.addEventListener('click', function (event) {
+        const bookTarget = findBookIndex(bookId)
+        const alertInformation = document.createElement('div');
+        alertInformation.classList.add('alertInfo');
 
-    document.dispatchEvent(new Event(RENDER_EVENT))
-    saveData()
+        displayPopDelete.style.display = 'none'
+
+        alertInformation.style.opacity = '1';
+        alertInformation.style.top = '10px';
+        alertInformation.style.visibility = 'visible';
+        alertInformation.style.maxWidth = '200px';
+        alertInformation.style.borderColor = '#FA532E';
+        alertInformation.style.background = '#FA532E';
+        alertInformation.style.color = '#fff';
+        alertInformation.innerText = 'Buku berhasil dihapus';
+        document.body.append(alertInformation);
+
+        setTimeout(() => {
+            alertInformation.style.opacity = '0';
+            alertInformation.style.top = '0px';
+            alertInformation.style.visibility = 'hidden';
+            alertInformation.style.borderColor = 'transparent';
+            alertInformation.style.background = 'transparent';
+        }, 1500);
+
+        if (bookTarget === -1) return
+
+        event.preventDefault()
+        books.splice(bookTarget, 1)
+
+        if (books.length == 0) {
+            hiddenSearch.setAttribute('hidden', true)
+            hiddenDropdown.setAttribute('hidden', true)
+            hiddenFinished.setAttribute('hidden', true)
+            hiddenNotFinished.setAttribute('hidden', true)
+        }
+
+        document.dispatchEvent(new Event(RENDER_EVENT))
+        saveData()
+    });
+
+    btnCancel.addEventListener('click', function () {
+        displayPopDelete.style.display = 'none'
+    })
 }
 
 function findBookIndex(bookId) {
@@ -212,7 +248,6 @@ function editBookFromBookshelf(bookId) {
     const editGenre = document.getElementById('inputEditGenre')
     const editCover = document.getElementById('inputEditCover')
     const btnCancelEdit = document.getElementById('editCancel')
-    const btnSubmitEdit = document.getElementById('editSubmmit')
     const bookTarget = findBookIndex(bookId)
 
     editTitle.setAttribute('value', books[bookTarget].title)
@@ -223,14 +258,13 @@ function editBookFromBookshelf(bookId) {
     editGenre.setAttribute('value', books[bookTarget].genre)
     editCover.setAttribute('value', books[bookTarget].cover)
 
-    btnSubmitEdit.addEventListener('click', function () {
-        const titleValidation = books[bookTarget].title = editTitle.value
-        const authorValidation = books[bookTarget].author = editAuthor.value
-        const yearValidation = books[bookTarget].year = editYear.value
-        const pageValidation = books[bookTarget].page = editPage.value
-        const languageValidation = books[bookTarget].language = editLanguage.value
-        const genreValidation = books[bookTarget].genre = editGenre.value
-        // const coverValidation = books[bookTarget].cover = editCover.value
+    formEditBooks.addEventListener('submit', function () {
+        books[bookTarget].title = editTitle.value
+        books[bookTarget].author = editAuthor.value
+        books[bookTarget].year = editYear.value
+        books[bookTarget].page = editPage.value
+        books[bookTarget].language = editLanguage.value
+        books[bookTarget].genre = editGenre.value
 
         if (books[bookTarget].cover = editCover.value.length <= 15) {
             books[bookTarget].cover = editCover.value.innerText = 'assets/image/dummy-cover.jpg'
@@ -238,21 +272,16 @@ function editBookFromBookshelf(bookId) {
             books[bookTarget].cover = editCover.value
         }
 
-        if (titleValidation == '' || authorValidation == '' || yearValidation == '' || pageValidation == '' || languageValidation == '' || genreValidation == '') {
-            alert('Salah satu input yang anda masukkan tidak boleh kosong')
-        } else {
-            document.dispatchEvent(new Event(RENDER_EVENT))
-            saveData()
-            formEditBooks.reset()
-            displayInputEdit.style.display = 'none'
-        }
+        document.dispatchEvent(new Event(RENDER_EVENT))
+        saveData()
+        formEditBooks.reset()
+        displayInputEdit.style.display = 'none'
     })
 
     btnCancelEdit.addEventListener('click', function (e) {
         e.preventDefault()
         displayInputEdit.style.display = 'none'
         formEditBooks.reset()
-
     })
 }
 
