@@ -139,9 +139,16 @@ function makeBook(bookObject) {
 
 function addBookToComplete(bookId) {
     const bookTarget = findBook(bookId)
+    const getIsComplete = books.filter(item => {
+        return !item.isComplete
+    })
 
     if (bookTarget.isComplete == false) {
         hiddenFinished.removeAttribute('hidden')
+    }
+
+    if (getIsComplete.length == 1) {
+        hiddenNotFinished.setAttribute('hidden', true)
     }
 
     if (bookTarget == null) return
@@ -224,9 +231,16 @@ function findBookIndex(bookId) {
 
 function undoBookFromComplete(bookId) {
     const bookTarget = findBook(bookId)
+    const getIsComplete = books.filter(item => {
+        return item.isComplete
+    })
 
     if (bookTarget.isComplete == true) {
         hiddenNotFinished.removeAttribute('hidden')
+    }
+
+    if (getIsComplete.length == 1) {
+        hiddenFinished.setAttribute('hidden', true)
     }
 
     if (bookTarget == null) return
