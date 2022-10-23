@@ -292,8 +292,7 @@ function editBookFromBookshelf(bookId) {
         displayInputEdit.style.display = 'none'
     })
 
-    btnCancelEdit.addEventListener('click', function (e) {
-        e.preventDefault()
+    btnCancelEdit.addEventListener('click', function () {
         displayInputEdit.style.display = 'none'
         formEditBooks.reset()
     })
